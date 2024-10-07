@@ -1,0 +1,29 @@
+.app-container {
+    display: flex;
+}
+
+.conent {
+    width: 100%;
+}
+
+.sidebar {
+    min-height: 900px;
+}
+
+.postcard {
+    margin: 18px 20px;
+    width: 20rem;
+}
+
+.badge {
+    margin: 0px 5px;
+}
+
+.reactions {
+    margin: 10px 10px 0 10px;
+}
+
+.create-post {
+    margin: 10%;
+    width: 70%;
+}
