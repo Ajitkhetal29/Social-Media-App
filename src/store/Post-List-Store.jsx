@@ -12,18 +12,38 @@ const PostListReducer = (currentPostList, action) => {
     newPostList = currentPostList.filter(
       (post) => post.id !== action.payload.postID
     );
+  } else if (action.type === "ADD_POST") {
+    newPostList = [action.palyload, ...currentPostList]
   }
 
   return newPostList;
 };
-  
+
 const PostListProvider = ({ children }) => {
   const [postlist, dispatchPostList] = useReducer(
     PostListReducer,
     DEFAULT_POST_LIST
   );
 
-  const addPost = () => {};
+  const addPost = (
+    postUserId,
+    postBody,
+    postTitle,
+    postReactions,
+    postHashTags
+  ) => {
+    dispatchPostList({
+      type: "ADD_POST",
+      palyload: {
+        id: Date.now(),
+        title: postBody,
+        body: postTitle,
+        reactions: postReactions,
+        userId: postUserId,
+        tags: postHashTags,
+      },
+    });
+  };
 
   const deletePost = (postID) => {
     dispatchPostList({

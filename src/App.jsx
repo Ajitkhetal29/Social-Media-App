@@ -31,9 +31,8 @@ function App() {
      </PostListProvider>
   );
 
-}
+};
 
 export default App;
 
 
-11.23

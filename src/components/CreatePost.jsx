@@ -1,72 +1,92 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { PostList } from "../store/Post-List-Store";
 
 const CreatePost = () => {
-  const userId = useRef();
-  const postTitle = useRef();
-  const postBody = useRef();
-  const postReactions = useRef();
-  const postHashTags = useRef();
+  const { addPost } = useContext(PostList);
+
+  const userIdElement = useRef();
+  const postTitleElement = useRef();
+  const postBodyElement = useRef();
+  const postReactionselemet = useRef();
+  const postHashTagselement = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const postUserId = userIdElement.current.value;
+    const postTitle = postTitleElement.current.value;
+    const postBody = postBodyElement.current.value;
+    const postReactions = postReactionselemet.current.value;
+    const postHashTags = postHashTagselement.current.value.split(" ");
+
+    addPost(postUserId, postBody, postTitle, postReactions, postHashTags);
+
+    userIdElement.current.value = "";
+    postTitleElement.current.value = "";
+    postBodyElement.current.value = "";
+    postReactionselemet.current.value = "";
+    postHashTagselement.current.value = "";
+  };
 
   return (
     <>
-      <form className="create-post">
+      <form className="create-post" onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="userId" className="form-label">
+          <label htmlFor="userIdElement" className="form-label">
             User Id
           </label>
           <input
-            ref={userId}
+            ref={userIdElement}
             type="text"
             className="form-control"
-            id="userId"
+            id="userIdElement"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="postTitleElement" className="form-label">
             Post Title
           </label>
           <input
-            ref={postTitle}
+            ref={postTitleElement}
             type="text"
             className="form-control"
-            id="title"
+            id="postTitleElement"
             placeholder="Enter Post Title"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="body" className="form-label">
+          <label htmlFor="postBodyElement" className="form-label">
             Post Content
           </label>
           <textarea
-            ref={postBody}
+            ref={postBodyElement}
             aria-rowcount={10}
             aria-colcount={10}
             type="text"
             className="form-control"
-            id="body"
+            id="postBodyElement"
             placeholder="Tell us more.."
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="reactions" className="form-label">
+          <label htmlFor="postReactionselemet" className="form-label">
             No Of Reactions
           </label>
           <input
-            ref={postReactions}
+            ref={postReactionselemet}
             type="text"
             className="form-control"
-            id="reactions"
+            id="postReactionselemet"
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="tags" className="form-label">
+          <label htmlFor="postHashTagselement" className="form-label">
             Enter Your HashTag Here
           </label>
           <input
-            ref={postHashTags}
+            ref={postHashTagselement}
             type="text"
             className="form-control"
-            id="tags"
+            id="postHashTagselement"
           />
         </div>
 
